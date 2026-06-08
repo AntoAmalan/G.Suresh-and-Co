@@ -9,6 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&family=Noto+Sans+Tamil:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -33,11 +37,19 @@
 
     <!-- Hero Section -->
     <section class="retail-hero">
+        <!-- Background Video Container -->
+        <div class="retail-hero-video-container">
+            <video class="retail-hero-video" autoplay muted loop playsinline>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-people-shopping-in-a-supermarket-4350-large.mp4" type="video/mp4">
+            </video>
+            <div class="retail-hero-video-overlay"></div>
+        </div>
+        
         <div class="retail-hero-content">
-            <h1 class="retail-hero-title">G. SURESH & CO.</h1>
-            <p class="retail-hero-subtitle">Curated Retail. Scaled Wholesale. Uncompromised Quality.</p>
-            <p class="retail-hero-tamil">தரத்தின் உச்சம். விலையின் நிச்சயம். சில்லறை மற்றும் மொத்த விற்பனையின் புதிய அத்தியாயம்!</p>
-            <div class="retail-hero-cta-group">
+            <h1 class="retail-hero-title gs-reveal">G. SURESH & CO.</h1>
+            <p class="retail-hero-subtitle gs-reveal">Curated Retail. Scaled Wholesale. Uncompromised Quality.</p>
+            <p class="retail-hero-tamil gs-reveal">தரத்தின் உச்சம். விலையின் நிச்சயம். சில்லறை மற்றும் மொத்த விற்பனையின் புதிய அத்தியாயம்!</p>
+            <div class="retail-hero-cta-group gs-reveal">
                 <a href="#gallery" class="retail-btn-primary">Explore Store Gallery</a>
                 <a href="#contact" class="retail-btn-secondary">Contact/Locate Us</a>
             </div>
@@ -488,6 +500,76 @@
         
         navToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+        });
+    </script>
+
+    <!-- GSAP Animation Script -->
+    <script>
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Section Fade-and-Rise Staggered Animation
+        gsap.fromTo('.gs-reveal', 
+            {
+                opacity: 0,
+                y: 60,
+                scale: 0.95
+            },
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: 'power3.out',
+                delay: 0.3
+            }
+        );
+
+        // Scroll-Triggered Section Animations
+        gsap.utils.toArray('.retail-section, .retail-section-alt, .retail-gallery').forEach(section => {
+            gsap.fromTo(section,
+                {
+                    opacity: 0,
+                    y: 50
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                        end: 'top 20%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        // Card Staggered Animations
+        gsap.utils.toArray('.retail-grid, .retail-grid-4-col').forEach(grid => {
+            gsap.fromTo(grid.children,
+                {
+                    opacity: 0,
+                    y: 40,
+                    scale: 0.9
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: grid,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
         });
     </script>
 
