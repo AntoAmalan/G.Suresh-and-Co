@@ -122,17 +122,18 @@ body::after {
     inset: -20%;
     pointer-events: none;
     z-index: -1;
-    filter: blur(60px);
-    animation: drift 16s ease-in-out infinite alternate;
+    filter: blur(40px);
+    animation: drift 20s ease-in-out infinite alternate;
+    will-change: transform;
 }
 
 body::before {
-    background: radial-gradient(circle, rgba(77, 216, 255, 0.2) 0%, transparent 42%);
+    background: radial-gradient(circle, rgba(77, 216, 255, 0.15) 0%, transparent 42%);
 }
 
 body::after {
-    background: radial-gradient(circle, rgba(255, 191, 71, 0.16) 0%, transparent 38%);
-    animation-duration: 22s;
+    background: radial-gradient(circle, rgba(255, 191, 71, 0.12) 0%, transparent 38%);
+    animation-duration: 25s;
 }
 
 /* Typography - Modern & Bold */
@@ -184,7 +185,8 @@ p {
     left: 0;
     right: 0;
     background: linear-gradient(90deg, rgba(8, 12, 28, 0.94) 0%, rgba(22, 18, 50, 0.94) 100%);
-    backdrop-filter: blur(24px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: var(--spacing-sm) var(--spacing-md);
     display: flex;
     justify-content: space-between;
@@ -290,6 +292,7 @@ p {
     background:
         linear-gradient(90deg, rgba(6, 10, 20, 0.94) 0%, rgba(6, 10, 20, 0.62) 44%, rgba(6, 10, 20, 0.2) 100%),
         url('Store Gallery/Welcome BG.png') center/cover no-repeat;
+    background-attachment: scroll;
 }
 
 .retail-hero::before,
@@ -300,6 +303,7 @@ p {
     pointer-events: none;
     border-radius: 50%;
     filter: blur(0);
+    will-change: transform;
 }
 
 .retail-hero::before {
@@ -329,7 +333,8 @@ p {
     border-radius: 28px;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.16);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 24px 55px rgba(0, 0, 0, 0.3);
 }
 
@@ -346,7 +351,8 @@ p {
     color: var(--accent-silver);
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     margin-bottom: 1rem;
 }
 
@@ -432,7 +438,8 @@ p {
     border: 1px solid rgba(245, 201, 107, 0.28);
     border-radius: 16px;
     display: inline-block;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
     letter-spacing: 0.01em;
 }
@@ -554,11 +561,13 @@ p {
 .retail-section {
     padding: var(--spacing-xl) var(--spacing-md);
     background: linear-gradient(180deg, rgba(5, 8, 22, 0.95) 0%, rgba(8, 13, 28, 0.95) 100%);
+    contain: layout style paint;
 }
 
 .retail-section-alt {
     padding: var(--spacing-xl) var(--spacing-md);
     background: linear-gradient(135deg, rgba(18, 27, 51, 0.95) 0%, rgba(10, 16, 33, 0.95) 100%);
+    contain: layout style paint;
 }
 
 .retail-section::before,
@@ -685,7 +694,8 @@ p {
     width: 80px;
     height: 80px;
     background: linear-gradient(135deg, rgba(77, 216, 255, 0.18), rgba(179, 140, 255, 0.18));
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
@@ -745,7 +755,7 @@ p {
     height: 320px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(77, 216, 255, 0.28), rgba(179, 140, 255, 0.22) 45%, transparent 72%);
-    filter: blur(6px);
+    filter: blur(3px);
     animation: drift 10s ease-in-out infinite alternate;
 }
 
@@ -756,7 +766,8 @@ p {
     border-radius: 32px;
     background: linear-gradient(140deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
     border: 1px solid rgba(255,255,255,0.16);
-    backdrop-filter: blur(24px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
     max-width: 470px;
     transform: translateY(0);
@@ -826,6 +837,7 @@ p {
 .retail-gallery {
     padding: var(--spacing-xl) var(--spacing-md);
     background: var(--dark-surface);
+    contain: layout style paint;
 }
 
 .retail-gallery-grid {
@@ -834,6 +846,8 @@ p {
     gap: var(--spacing-md);
     max-width: 1400px;
     margin: 0 auto;
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
 }
 
 .retail-gallery-item {
@@ -851,6 +865,7 @@ p {
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-medium);
+    will-change: transform;
 }
 
 .retail-gallery-item:hover img {
@@ -1223,7 +1238,9 @@ p {
         left: 0;
         right: 0;
         background: rgba(10, 10, 15, 0.98);
-        backdrop-filter: blur(20px);
+        backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(10px);
         flex-direction: column;
         padding: var(--spacing-md);
         gap: var(--spacing-sm);

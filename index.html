@@ -5,21 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>G.Suresh and Co - Your Local Departmental Store</title>
     <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- Performance: Resource hints for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&family=Noto+Sans+Tamil:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     
-    <!-- GSAP Animation Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Performance: Optimized font loading with display swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Tamil:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Performance: CSS with preload -->
+    <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
+    
+    <!-- Performance: Preload hero background image -->
+    <link rel="preload" href="Store Gallery/Welcome BG.png" as="image">
+    
+    <!-- Performance: Defer non-critical scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
 
     <!-- Navigation Bar -->
     <nav class="retail-nav">
         <a href="#" class="retail-nav-logo">
-            <img src="logo.jpeg" alt="G.Suresh and Co Logo" style="height: 72px; width: auto; margin-right: 0.9rem; border-radius: 14px; box-shadow: 0 10px 24px rgba(0,0,0,0.25);">
+            <img src="logo.jpeg" alt="G.Suresh and Co Logo" loading="eager" fetchpriority="high" style="height: 72px; width: auto; margin-right: 0.9rem; border-radius: 14px; box-shadow: 0 10px 24px rgba(0,0,0,0.25);">
             <div style="display: flex; flex-direction: column; line-height: 1.05;">
                 <span style="font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.3rem; color: #fff8e6; letter-spacing: 0.02em;">G.Suresh <span style="color: var(--accent-gold);">& Co</span></span>
                 <span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.74rem; color: #cbd5ff; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 0.12rem;">V.K.Puram</span>
@@ -179,31 +190,31 @@
         
         <div class="retail-gallery-grid">
             <div class="retail-gallery-item">
-                <img src="Store Gallery/Store1.jpeg" alt="Store Outside View 1">
+                <img src="Store Gallery/Store1.jpeg" alt="Store Outside View 1" loading="lazy" decoding="async">
             </div>
             <div class="retail-gallery-item">
-                <img src="Store Gallery/Store2.jpeg" alt="Store Outside View 2">
+                <img src="Store Gallery/Store2.jpeg" alt="Store Outside View 2" loading="lazy" decoding="async">
             </div>
             <div class="retail-gallery-item">
-                <img src="Store Gallery/95Qmw.jpg" alt="Store Image 1">
+                <img src="Store Gallery/95Qmw.jpg" alt="Store Image 1" loading="lazy" decoding="async">
             </div>
             <div class="retail-gallery-item">
-                <img src="Store Gallery/Gemini_Generated_Image_40jao940jao940ja.png" alt="Store Image 2">
+                <img src="Store Gallery/Gemini_Generated_Image_40jao940jao940ja.png" alt="Store Image 2" loading="lazy" decoding="async">
             </div>
             <div class="retail-gallery-item">
-                <img src="Store Gallery/Gemini_Generated_Image_enzzwenzzwenzzwe.png" alt="Store Image 3">
+                <img src="Store Gallery/Gemini_Generated_Image_enzzwenzzwenzzwe.png" alt="Store Image 3" loading="lazy" decoding="async">
             </div>
             <div class="retail-gallery-item">
-                <img src="Store Gallery/Gemini_Generated_Image_jgxbspjgxbspjgxb (1).png" alt="Store Image 4">
+                <img src="Store Gallery/Gemini_Generated_Image_jgxbspjgxbspjgxb (1).png" alt="Store Image 4" loading="lazy" decoding="async">
             </div>
             <div class="retail-gallery-item">
-                <img src="Store Gallery/Gemini_Generated_Image_jgxbspjgxbspjgxb.png" alt="Store Image 5">
+                <img src="Store Gallery/Gemini_Generated_Image_jgxbspjgxbspjgxb.png" alt="Store Image 5" loading="lazy" decoding="async">
             </div>
             <div class="retail-gallery-item">
-                <img src="Store Gallery/Gemini_Generated_Image_ry8v5mry8v5mry8v.png" alt="Store Image 6">
+                <img src="Store Gallery/Gemini_Generated_Image_ry8v5mry8v5mry8v.png" alt="Store Image 6" loading="lazy" decoding="async">
             </div>
             <div class="retail-gallery-item">
-                <img src="Store Gallery/JnPPv.jpg" alt="Store Image 7">
+                <img src="Store Gallery/JnPPv.jpg" alt="Store Image 7" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
@@ -505,82 +516,87 @@
 
     <!-- Mobile Menu Script -->
     <script>
-        const navToggle = document.querySelector('.retail-nav-toggle');
-        const navLinks = document.querySelector('.retail-nav-links');
-        
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        // Performance: Defer non-critical navigation script
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.querySelector('.retail-nav-toggle');
+            const navLinks = document.querySelector('.retail-nav-links');
+            
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
         });
     </script>
 
-    <!-- GSAP Animation Script -->
+    <!-- Performance: Optimized GSAP Animation Script -->
     <script>
-        // Register ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
+        // Performance: Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+            // Register ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Section Fade-and-Rise Staggered Animation
-        gsap.fromTo('.gs-reveal', 
-            {
-                opacity: 0,
-                y: 60,
-                scale: 0.95
-            },
-            {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 1.2,
-                stagger: 0.2,
-                ease: 'power3.out',
-                delay: 0.3
-            }
-        );
-
-        // Scroll-Triggered Section Animations
-        gsap.utils.toArray('.retail-section, .retail-section-alt, .retail-gallery').forEach(section => {
-            gsap.fromTo(section,
+            // Performance: Simplified Hero Section Animation
+            gsap.fromTo('.gs-reveal', 
                 {
                     opacity: 0,
-                    y: 50
+                    y: 30
                 },
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 1,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: section,
-                        start: 'top 80%',
-                        end: 'top 20%',
-                        toggleActions: 'play none none reverse'
-                    }
-                }
-            );
-        });
-
-        // Card Staggered Animations
-        gsap.utils.toArray('.retail-grid, .retail-grid-4-col').forEach(grid => {
-            gsap.fromTo(grid.children,
-                {
-                    opacity: 0,
-                    y: 40,
-                    scale: 0.9
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
                     duration: 0.8,
                     stagger: 0.15,
                     ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: grid,
-                        start: 'top 85%',
-                        toggleActions: 'play none none reverse'
-                    }
+                    delay: 0.2
                 }
             );
-        });
+
+            // Performance: Optimized Scroll-Triggered Section Animations
+            gsap.utils.toArray('.retail-section, .retail-section-alt, .retail-gallery').forEach(section => {
+                gsap.fromTo(section,
+                    {
+                        opacity: 0,
+                        y: 30
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        ease: 'power1.out',
+                        scrollTrigger: {
+                            trigger: section,
+                            start: 'top 85%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            });
+
+            // Performance: Simplified Card Animations
+            gsap.utils.toArray('.retail-grid, .retail-grid-4-col').forEach(grid => {
+                gsap.fromTo(grid.children,
+                    {
+                        opacity: 0,
+                        y: 20
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                        stagger: 0.1,
+                        ease: 'power1.out',
+                        scrollTrigger: {
+                            trigger: grid,
+                            start: 'top 90%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            });
+        }
     </script>
 
 </body>
